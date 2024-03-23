@@ -1,63 +1,49 @@
-const canvas = document.querySelector("#container");
+const canvas = document.querySelector("#canvas");
+const size = document.querySelector("#size");
+const submit = document.querySelector("#submit");
 
-let row = document.createElement("div");
-row.classList = "row";
-let box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-canvas.appendChild(row);
+function createGrid(size) {
+    canvas.style.width = `${size * 25}px`;
+    let row;
+    let box;
+    for (let i = 0; i < size; i++) {
+        row = document.createElement("div");
+        row.classList = "row";
+        for (let j = 0; j < size; j++) {
+            box = document.createElement("div");
+            box.classList = "box";
+            row.appendChild(box);
+        }
 
-row = document.createElement("div");
-row.classList = "row";
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-box = document.createElement("div");
-box.classList = "box";
-row.appendChild(box);
-canvas.appendChild(row);
+        canvas.appendChild(row);
+    }
 
-const draw = document.querySelectorAll(".box");
+}
+
+function deleteGrid() {
+    const grid = document.querySelector("#canvas");
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+}
 
 canvas.addEventListener("mouseover", (e) => {
     e.target.style.backgroundColor = "black";
 });
 
 
-/**
- * -- clean up the above code by making use of for loops.
- * -- introduce a text field that takes the user input for canvas size
- * -- create a variable limit of size 100x100 for the canvas
- * -- create a variable that takes the width size of the canvas and modifys it on the container
- *  
- *
- *
- *
- */
+
+submit.addEventListener("click", () => {
+    deleteGrid();
+    let getUserInput = Number(size.value);
+    if (isNaN(getUserInput)) {
+        alert("You did not enter a valid number! please enter a number from 1 - 100!");
+    }
+    else if (getUserInput > 100) {
+        alert("Grid size is too large! Please enter a number no greater than 100!");
+    }
+
+    else createGrid(getUserInput);
+})
+
+size.addEventListener("click", () => size.value = "");

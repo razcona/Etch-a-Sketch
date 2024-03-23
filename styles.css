@@ -1,5 +1,32 @@
-#container {
-    width: 150px;
+#header {
+    display: flex;
+    flex-direction: column;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background-color: gray;
+}
+
+label {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+#input {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 56px;
+    display: flex;
+    justify-content: center;
 }
 
 .row {
@@ -9,6 +36,7 @@
     width: 25px;
     height: 25px;
     border: 1px solid black;
+    background-color: white;
 }
 
 
